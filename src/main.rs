@@ -461,18 +461,6 @@ mod tests {
             assert_eq!(result, 0); // La différence absolue est 5 uniquement sur le canal rouge
         }
 
-        unsafe {
-            let result = l1_generic(&im1, &im2);
-            assert_eq!(result, 1000); // La différence absolue est 5 uniquement sur le canal rouge
-        }
-
-        unsafe {
-            let result = l1_generic(&im1, &im1);
-            assert_eq!(result, 0); // La différence absolue est 5 uniquement sur le canal rouge
-        }
-
-
-
         //assert!(true);
     }
 
@@ -484,7 +472,18 @@ mod tests {
 
     #[test]
     fn unit_test_generic() {
-        // TODO
-        assert!(true);
+        let im1 = RgbImage::from_pixel(10, 10, image::Rgb([10, 20, 30])); // Un seul pixel avec les valeurs [10, 20, 30]
+        let im2 = RgbImage::from_pixel(10, 10, image::Rgb([20, 20, 30])); // Un seul pixel avec les valeurs [15, 20, 30]
+
+
+        unsafe {
+            let result = l1_generic(&im1, &im2);
+            assert_eq!(result, 1000); // La différence absolue est 5 uniquement sur le canal rouge
+        }
+
+        unsafe {
+            let result = l1_generic(&im1, &im1);
+            assert_eq!(result, 0); // La différence absolue est 5 uniquement sur le canal rouge
+        }
     }
 }
